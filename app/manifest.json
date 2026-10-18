@@ -1,0 +1,52 @@
+{
+  "name": "Mahle eBike",
+  "version": "0.9",
+  "author": "Jarno",
+  "description": "Mahle X35 e-bike",
+  "type": "device",
+  "usage": "workout",
+  "modificationTime": 1792347947,
+  "template": [
+    {
+      "name": "t.html"
+    }
+  ],
+  "out": [
+    {
+      "name": "con"
+    },
+    {
+      "name": "stat"
+    },
+    {
+      "name": "spd"
+    },
+    {
+      "name": "lvl",
+      "log": true,
+      "shownName": "Assist level",
+      "format": "Count_Twodigits"
+    },
+    {
+      "name": "lmax"
+    },
+    {
+      "name": "soc",
+      "log": true,
+      "shownName": "Battery",
+      "format": "Percentage_Threedigits"
+    },
+    {
+      "name": "pwr",
+      "log": true,
+      "shownName": "Motor power",
+      "format": "Power_Fourdigits"
+    },
+    {
+      "name": "rng",
+      "log": true,
+      "shownName": "Range",
+      "format": "Distance_Onedecimal"
+    }
+  ]
+}

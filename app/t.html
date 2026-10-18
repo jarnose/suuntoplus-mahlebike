@@ -1,0 +1,65 @@
+<!-- Mahle eBike: assist level, battery, speed, power and range. Up/down buttons change the assist level. -->
+<uiView>
+  <div id="suuntoplus">
+
+    <!-- title / connection status -->
+    <div class="cm-fg" style="width:100%;height:25%;">
+      <div class="sp-t-s p-hc" style="top:calc(60% - 50%e);">
+        <eval input="Zapp/{zapp_index}/Output/stat"
+          outputFormat="keyValue 0=Searching for bike!|1=Reconnecting!|2=Waiting for data!|3=Mahle eBike!|4=Connected, setting up!|5=Cannot read the bike!|6=Command failed!|7=Level not allowed!" default="Mahle eBike" />
+      </div>
+    </div>
+
+    <div class="cm-fg p-hc" style="top:34%;width:2px;height:17%;opacity:0.4;"></div>
+
+    <!-- assist level (left) -->
+    <div style="top:calc(35% - 100%e);left:calc(26% - 50%e);">
+      <span class="sp-t-s">Assist</span>
+    </div>
+    <div style="top:calc(43% - 50%e);left:calc(26% - 50%e);">
+      <span class="sp-d-m f-num">
+        <eval input="Zapp/{zapp_index}/Output/lvl" outputFormat="Count_Twodigits" default="-" />
+      </span>
+      <span class="sp-t-s">/<eval input="Zapp/{zapp_index}/Output/lmax" outputFormat="Count_Twodigits" default="-" /></span>
+    </div>
+
+    <!-- battery (right) -->
+    <div style="top:calc(35% - 100%e);left:calc(74% - 50%e);">
+      <span class="sp-t-s">Battery</span>
+    </div>
+    <div style="top:calc(43% - 50%e);left:calc(74% - 50%e);">
+      <span class="sp-d-m f-num">
+        <eval input="Zapp/{zapp_index}/Output/soc" outputFormat="Count_Threedigits" default="--" />
+      </span>
+      <span class="sp-t-s">%</span>
+    </div>
+
+    <!-- speed -->
+    <div class="p-hc sp-vertical-center" style="top:calc(66% - 50%e);">
+      <span class="sp-d-l f-num">
+        <eval input="Zapp/{zapp_index}/Output/spd" outputFormat="Speed_Threedigits" default="--" />
+      </span>
+      <span optional class="postfix-m sp-t-s" style="padding-left:4px;">
+        <postfix />
+      </span>
+    </div>
+
+    <!-- power and range -->
+    <div class="p-hc sp-vertical-center" style="top:calc(87% - 50%e);">
+      <span class="sp-d-xs f-num">
+        <eval input="Zapp/{zapp_index}/Output/pwr" outputFormat="Power_Fourdigits" default="--" />
+      </span>
+      <span optional class="sp-t-s" style="padding:0 10px 0 3px;">W</span>
+      <span class="sp-d-xs f-num">
+        <eval input="Zapp/{zapp_index}/Output/rng" outputFormat="Distance_Onedecimal" default="--" />
+      </span>
+      <span optional class="sp-t-s" style="padding-left:3px;">km</span>
+    </div>
+
+
+    <userInput>
+      <pushButton name="up" onClick="$.put('/Zapp/{zapp_index}/Event', 1, null, 'int32');" />
+      <pushButton name="down" onClick="$.put('/Zapp/{zapp_index}/Event', 3, null, 'int32');" />
+    </userInput>
+  </div>
+</uiView>
