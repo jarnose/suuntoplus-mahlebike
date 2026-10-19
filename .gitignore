@@ -2,3 +2,4 @@ dl/
 editor/
 out/
 tools/zappctl/
+tests/fixtures-private/

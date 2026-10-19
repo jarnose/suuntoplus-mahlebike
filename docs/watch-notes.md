@@ -33,6 +33,23 @@ separately). Docs and template only show 128-bit custom UUIDs.
 - Up / down buttons: `<pushButton name="up" onClick="$.put('/Zapp/{zapp_index}/Event', 1, null, 'int32');"/>` ->
   `onEvent(input, output, 1)`. Level change `$M$A#<n>#@` through `writeChar` works (FFE2 accepts both
   write types).
-- BLE has no delete in the watch protocol: test variants stay on the watch until removed over USB.
+- **Corrected 2026-10-18: test variants can be removed over BLE.** zappctl has no delete, which is
+  what the earlier note here said - but the watch protocol does: `/FileSystem/Delete` on
+  `b:/zapp/<id>.dev` works, measured by deleting a plugin and installing it again
+  (harbour-suuntosync's `docs/suuntoplus-and-watchfaces.md`). harbour-suuntosync's SuuntoPlus page
+  lists the plugin directory's own files - a `.dev` among them - and removes one from the context
+  menu, so a stale test build no longer needs USB.
 - zappctl runs on the phone (Python 3.11, wheels for bleak/dbus-fast unpacked into a directory,
   `PYTHONPATH`); the notify daemon and the app of harbour-suuntosync have to be stopped while it runs.
+
+## What a ride recorded (2026-10-19, 64 min incl. a 31 min pause, 4.1 km)
+
+Read from the SML export of harbour-suuntosync (`ZappSample` entries; channel ids 3, 5, 6, 7 = the four
+`"log": true` outputs in manifest order: level, battery, power, range).
+
+- 1963-1964 samples per channel at 1 Hz, only while the exercise ran (a single gap = the pause), no dropouts.
+- level 0-3 with 13 changes by the buttons, battery 86 -> 83 %, motor power 0-211 W (mean 12 W), range
+  95.4 -> 92.5 km (stored in metres, shown with `Distance_Onedecimal`).
+- The summary outputs came through: *Battery used* 3 (matches 86 -> 83) and *Energy used Wh* 7.
+- harbour-suuntosync's **FIT export does not carry these channels** (no developer fields, no power); the SML
+  does. A FIT developer-field export of `ZappSample` would be a feature for harbour-suuntosync.
