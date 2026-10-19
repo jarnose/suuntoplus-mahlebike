@@ -53,3 +53,7 @@ Read from the SML export of harbour-suuntosync (`ZappSample` entries; channel id
 - The summary outputs came through: *Battery used* 3 (matches 86 -> 83) and *Energy used Wh* 7.
 - harbour-suuntosync's **FIT export does not carry these channels** (no developer fields, no power); the SML
   does. A FIT developer-field export of `ZappSample` would be a feature for harbour-suuntosync.
+- **Reconnection**: the bike was switched off and on again during the pause, and the data resumed with the first
+  sample after the pause (level 2 -> 1, which is the bike's level after a start; battery 84 %, range 93.75 -> 93.65 km).
+  The watch reconnected by itself (event 101, then 100) and the app enabled notifications again without registering
+  the UUIDs a second time.

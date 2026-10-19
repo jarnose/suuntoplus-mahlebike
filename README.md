@@ -42,5 +42,5 @@ select **Mahle eBike** among the SuuntoPlus apps of a cycling sport mode, start 
 ## Status (0.9)
 
 Verified on a Suunto Race and an iWoc8910, including a 64 min commute (2026-10-19): finding the bike, connection,
-live values, assist level buttons, the workout log and the summary. Not yet verified: reconnection after leaving
-range, the 20-byte frame layouts (other bikes), X20 `HUS` bikes (the search is for `iWoc`).
+live values, assist level buttons, the workout log, the summary, and reconnection after the bike was switched
+off and on during a pause. Not yet verified: leaving and re-entering range while riding, the 20-byte frame layouts (other bikes), X20 `HUS` bikes (the search is for `iWoc`).
